@@ -4,9 +4,6 @@ const metrosMin = document.querySelector("#metrosMin");
 const metrosMax = document.querySelector("#metrosMax");
 const totalPropiedades = document.querySelector("#totalPropiedades");
 const propiedades = document.querySelector(".propiedades");
-const propiedadCaja = document.querySelector("#propiedadCaja");
-const form = document.querySelector("#form");
-
 
 const propiedadesJSON = [
   {
@@ -58,7 +55,7 @@ let html = "";
 
 for (let propiedad of propiedadesJSON) {
   html += `
-    <div class="propiedad" id="propiedadCaja">
+    <div class="propiedad">
     <div class="img" style="background-image: url('${propiedad.src}')"></div>
     <section>
       <h5>${propiedad.name}</h5>
@@ -87,15 +84,17 @@ btnBuscar.addEventListener("click", () => {
   }
 
   let html = "";
+  let contar = 0;
 
   for (let propiedad of propiedadesJSON) {
     if (
-      totalRooms === propiedad.rooms 
-      && propiedad.m >= totalMtsMin 
-      && propiedad.m <= totalMtsMax
-      ) {
+      totalRooms === propiedad.rooms && 
+      propiedad.m >= totalMtsMin &&
+      propiedad.m <= totalMtsMax
+    ) {
+        contar++;
         html += `
-          <div class="propiedad" id="propiedadCaja">
+          <div class="propiedad">
               <div class="img" style="background-image: url('${propiedad.src}')"></div>
               <section>
                 <h5>${propiedad.name}</h5>
@@ -106,13 +105,13 @@ btnBuscar.addEventListener("click", () => {
                     <p class="my-3">${propiedad.description}</p>
                     <button class="btn btn-info ">Ver más</button>
               </section>
-              </div>
-              `;
+          </div>
+        `;
     }
-
-    propiedades.innerHTML = html;
-    totalPropiedades.innerHTML = propiedadesJSON.length;
-
-  };
+   
+  }
+  
+  propiedades.innerHTML = html;
+  totalPropiedades.innerHTML = contar;
 
 }); 
