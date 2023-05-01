@@ -52,6 +52,8 @@ const propiedadesJSON = [
     m: 500,
   },
 ];
+
+
 let html = "";
 
 for (let propiedad of propiedadesJSON) {
